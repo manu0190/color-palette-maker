@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Color Palette Maker</title>
+
+    <link
+    rel="stylesheet"
+    href="/static/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="app">
+
+        <section class="hero">
+
+            <p class="eyebrow">
+                PALETTE TOOL
+            </p>
+
+            <h1>
+                Color Palette Maker
+            </h1>
+
+            <p class="subtitle">
+                Turn your JSON color palette into a beautiful PNG.
+            </p>
+
+        </section>
+
+
+        <section
+            class="drop-zone"
+            id="dropZone"
+        >
+
+            <div class="upload-icon">
+                +
+            </div>
+
+            <h2>
+                Drop your JSON file here
+            </h2>
+
+            <p>
+                or choose a file from your computer
+            </p>
+
+            <button
+                id="chooseButton"
+                type="button"
+            >
+                Choose File
+            </button>
+
+            <input
+                id="fileInput"
+                type="file"
+                accept=".json,application/json"
+                hidden
+            >
+
+            <p
+                class="file-name"
+                id="fileName"
+            ></p>
+
+        </section>
+
+
+        <section
+            class="result"
+            id="result"
+            hidden
+        >
+
+            <div class="result-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        GENERATED PALETTE
+                    </p>
+
+                    <h2 id="paletteName">
+                        Palette
+                    </h2>
+
+                </div>
+
+                <span id="colorCount">
+                    0 colors
+                </span>
+
+            </div>
+
+
+            <div
+                class="palette"
+                id="palette"
+            ></div>
+
+
+            <button
+                class="download-button"
+                id="downloadButton"
+                type="button"
+            >
+                Download PNG
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
