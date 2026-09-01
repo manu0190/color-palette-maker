@@ -5,3 +5,4 @@ python-multipart
 Pillow
 scikit-learn
 scikit-image
+opencv-python-headless
