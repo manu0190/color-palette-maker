@@ -9,30 +9,21 @@ import matplotlib.pyplot as plt
 
 
 def load_colors(json_file):
-    """
-    Read a JSON palette and return its colors as HEX values.
-    """
+    with open(json_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    with open(json_file, "r") as file:
-        data = json.load(file)
-
+    # Support both "swatches" and "colors" schemas
+    swatch_list = data.get("swatches") or data.get("colors") or []
+    
     colors = []
-
-    for swatch in data["swatches"]:
-
-        r, g, b = swatch["components"]
-
-        # Convert 0–1 RGB to 0–255 RGB
-        rgb = (
-            round(r * 255),
-            round(g * 255),
-            round(b * 255)
-        )
-
-        # Convert RGB → HEX
-        hex_color = "#{:02X}{:02X}{:02X}".format(*rgb)
-
-        colors.append(hex_color)
+    for swatch in swatch_list:
+        # Handles {"hex": "#..."} or {"color": "#..."} or {"rgb": [...]}
+        if "hex" in swatch:
+            colors.append(swatch["hex"])
+        elif "rgb" in swatch:
+            colors.append(tuple(swatch["rgb"]))
+        elif "color" in swatch:
+            colors.append(swatch["color"])
 
     return colors
 

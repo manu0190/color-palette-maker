@@ -1,133 +1,285 @@
-<!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Color Palette Maker</title>
-
-    <link
-    rel="stylesheet"
-    href="/static/style.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Foundry — Visual Color Studies</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
-
 <body>
+    <div class="grain"></div>
+    <div class="background-art" aria-hidden="true">
+        <span class="orb orb-one"></span>
+        <span class="orb orb-two"></span>
+        <span class="orb orb-three"></span>
+    </div>
 
-    <main class="app">
+    <header class="nav shell">
+        <a class="brand" href="/">
+            <span class="brand-mark">CF</span>
+            <span>COLOR FOUNDRY</span>
+        </a>
+        <div class="nav-right">
+            <span>COLOR STUDY</span>
+            <span class="nav-dot"></span>
+            <span></span>
+        </div>
+    </header>
 
-        <section class="hero">
+    <main>
+        <section class="hero shell reveal">
 
-            <p class="eyebrow">
-                PALETTE TOOL
-            </p>
-
-            <h1>
-                Color Palette Maker
-            </h1>
-
-            <p class="subtitle">
-                Turn your JSON color palette into a beautiful PNG.
-            </p>
-
-        </section>
-
-
-        <section
-            class="drop-zone"
-            id="dropZone"
-        >
-
-            <div class="upload-icon">
-                +
+            <div class="hero-art hero-art-left">
+                <img
+                    src="/static/assets/art1.jpg"
+                    alt=""
+                >
             </div>
 
-            <h2>
-                Drop your JSON file here
-            </h2>
+            <div class="hero-art hero-art-right">
+                <img
+                    src="/static/assets/art2.jpg"
+                    alt=""
+                >
+            </div>
 
-            <p>
-                or choose a file from your computer
-            </p>
+            <div class="hero-wash"></div>
 
-            <button
-                id="chooseButton"
-                type="button"
-            >
-                Choose File
-            </button>
+            <div class="hero-content">
 
-            <input
-                id="fileInput"
-                type="file"
-                accept=".json,application/json"
-                hidden
-            >
-
-            <p
-                class="file-name"
-                id="fileName"
-            ></p>
-
-        </section>
-
-
-        <section
-            class="result"
-            id="result"
-            hidden
-        >
-
-            <div class="result-header">
-
-                <div>
-
-                    <p class="eyebrow">
-                        GENERATED PALETTE
-                    </p>
-
-                    <h2 id="paletteName">
-                        Palette
-                    </h2>
-
-                </div>
-
-                <span id="colorCount">
-                    0 colors
+                <span class="eyebrow">
+                    DIGITAL COLOR LAB
                 </span>
 
+                <h1>
+                    Find the colors
+                    <br>
+                    <em>inside.</em>
+                </h1>
+
+                <p class="hero-text">
+                    Turn an image into an artist-ready palette,
+                    or transform an existing palette into a
+                    visual color study.
+                </p>
+
+                <div class="hero-meta">
+                    <span>IMAGE → COLOR</span>
+                    <span>PALETTE → PNG</span>
+                    <span>UDAIPUR · INDIA</span>
+                </div>
+
             </div>
 
-
-            <div
-                class="palette"
-                id="palette"
-            ></div>
-
-
-            <button
-                class="download-button"
-                id="downloadButton"
-                type="button"
-            >
-                Download PNG
-            </button>
+            <div class="hero-caption">
+                <span>COLOR STUDY / 001</span>
+                <span>OBSERVE · REDUCE · CREATE</span>
+            </div>
 
         </section>
 
+        <section class="workflow shell reveal" id="workspace">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">01 / 02</span>
+                    <h2>Choose your source.</h2>
+                </div>
+                <p>Two simple workflows.<br>One color study.</p>
+            </div>
+
+            <div class="cards">
+                <article class="upload-card json-card" id="jsonDrop" tabindex="0">
+                    <input id="jsonFile" type="file" accept=".json,application/json" hidden>
+
+                    <div class="card-top">
+                        <span class="card-number">01</span>
+                        <span class="card-tag">PALETTE → PNG</span>
+                    </div>
+
+                    <div class="card-art json-art" aria-hidden="true">
+                        <span class="mini-swatch s1"></span>
+                        <span class="mini-swatch s2"></span>
+                        <span class="mini-swatch s3"></span>
+                        <span class="mini-swatch s4"></span>
+                        <span class="mini-swatch s5"></span>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="upload-icon">+</div>
+                        <h3>Existing palette</h3>
+                        <p>
+                            Bring a Color Foundry JSON palette
+                            and turn its colors into a clean
+                            visual palette sheet.
+                        </p>
+                        <div class="upload-status" id="jsonStatus">
+                            <span class="status-dot"></span>
+                            Drop JSON or click to browse
+                        </div>
+                        <span class="formats">JSON / COLOR FOUNDRY</span>
+                    </div>
+                </article>
+
+                <article class="upload-card image-card" id="imageDrop" tabindex="0">
+                    <input
+                        id="imageFile"
+                        type="file"
+                        accept=".jpg,.jpeg,.png,.webp,.avif,image/*"
+                        hidden
+                    >
+
+                    <div class="card-top">
+                        <span class="card-number">02</span>
+                        <span class="card-tag">IMAGE → PALETTE</span>
+                    </div>
+
+                    <div class="image-preview" id="imagePreview" hidden>
+                        <img id="referenceImage" alt="Selected reference image">
+                        <button type="button" class="preview-clear" id="clearImage" aria-label="Remove image">×</button>
+                    </div>
+
+                    <div class="card-content image-card-content">
+                        <div class="upload-icon">+</div>
+                        <h3>Reference image</h3>
+                        <p>
+                            Study the visual regions of a reference
+                            and recover a compact palette from it.
+                        </p>
+                        <div class="upload-status" id="imageStatus">
+                            <span class="status-dot"></span>
+                            Drop an image or click to browse
+                        </div>
+                        <span class="formats">JPG / PNG / WEBP / AVIF</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="process shell reveal" id="processing">
+            <div class="process-head">
+                <span>COLOR FOUNDRY / PROCESS</span>
+                <strong id="status">READY</strong>
+            </div>
+            <div class="process-track">
+                <span id="processBar"></span>
+            </div>
+            <div class="process-meta">
+                <span>LOCAL COLOR ANALYSIS</span>
+                <span>250 REGIONS · UP TO 48 COLORS</span>
+            </div>
+        </section>
+
+        <section class="result shell reveal" id="result" hidden>
+            <div class="result-head">
+                <div>
+                    <span class="section-index">COLOR STUDY</span>
+                    <h2>Your palette.</h2>
+                </div>
+                <span class="result-state">READY TO USE</span>
+            </div>
+
+            <div class="result-grid">
+                <div class="reference-result" id="referenceResult" hidden>
+                    <div class="result-label">REFERENCE IMAGE</div>
+                    <div class="reference-frame">
+                        <img id="referenceResultImage" alt="Reference image used for palette extraction">
+                    </div>
+                </div>
+
+                <div class="palette-result">
+                    <div class="result-label">GENERATED PALETTE</div>
+                    <div class="palette-frame">
+                        <img id="palettePreview" alt="Generated color palette">
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button id="download" type="button" class="button primary">
+                    Download palette PNG <span>↗</span>
+                </button>
+                <button id="new" type="button" class="button secondary">
+                    Start another study
+                </button>
+            </div>
+        </section>
+
+        <section class="method shell reveal">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">02 / METHOD</span>
+                    <h2>From pixels to palette.</h2>
+                </div>
+                <p>
+                    A compact view of what happens<br>
+                    inside the Color Foundry pipeline.
+                </p>
+            </div>
+
+            <div class="method-grid">
+                <article class="method-item">
+                    <span>01</span>
+                    <div class="method-number">250</div>
+                    <h3>Visual regions</h3>
+                    <p>Local areas are segmented to understand where color relationships occur.</p>
+                </article>
+
+                <article class="method-item featured">
+                    <span>02</span>
+                    <div class="method-number">48</div>
+                    <h3>Palette candidates</h3>
+                    <p>Important tones are reduced into a compact set designed for practical use.</p>
+                </article>
+
+                <article class="method-item">
+                    <span>03</span>
+                    <div class="method-number">∞</div>
+                    <h3>Artist interpretation</h3>
+                    <p>The final palette is a starting point for painting, illustration and visual study.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="quote shell reveal">
+            <span class="quote-mark">“</span>
+            <p>Good color is not a list of colors.<br><em>It is a relationship.</em></p>
+            <span class="quote-label">COLOR FOUNDRY / NOTE 001</span>
+        </section>
     </main>
 
+    <footer class="footer">
+        <div class="footer-main shell">
+            <div class="footer-title">
+                <span>COLOR</span>
+                <em>FOUNDRY</em>
+            </div>
+
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-label">CONTACT</span>
+                    <a href="mailto:manu0190@gmail.com">manu0190@gmail.com</a>
+                </div>
+
+                <div>
+                    <span class="footer-label">STUDIO</span>
+                    <p>Udaipur, Rajasthan<br>India</p>
+                </div>
+
+                <div>
+                    <span class="footer-label">PROJECT</span>
+                    <p>Color extraction<br>& visual analysis</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>COLOR FOUNDRY</span>
+                <span>© 2026</span>
+                <span>BUILT FOR VISUAL THINKERS</span>
+            </div>
+        </div>
+    </footer>
 
     <script src="/static/script.js"></script>
-
 </body>
-
 </html>

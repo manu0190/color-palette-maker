@@ -2,3 +2,6 @@ fastapi
 uvicorn[standard]
 matplotlib
 python-multipart
+Pillow
+scikit-learn
+scikit-image
